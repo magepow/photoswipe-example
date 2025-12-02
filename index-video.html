@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+  	<title>Photoswipe demo</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.2/photoswipe.min.css">
+
+
+  	<!-- Demo styles -->
+  	<style>
+    html,
+    body {
+		position: relative;
+		height: 100%;
+    }
+
+    body {
+		background: #eee;
+		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-size: 14px;
+		color: #000;
+		margin: 0;
+		padding: 0;
+    }
+
+    .pswp__item video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+  	</style>
+</head>
+
+<body>
+		<div class="pswp-gallery" id="gallery">
+       <a href="https://cdn.photoswipe.com/photoswipe-demo-images/videos/1/video.mp4" data-pswp-width="1920" data-pswp-height="1080" data-pswp-type="video" target="_blank">
+        <img src="https://cdn.photoswipe.com/photoswipe-demo-images/videos/1/thumb.jpeg" alt="">
+      </a>
+
+      <a href="https://example.com/test-video-link" data-pswp-video-src="https://cdn.photoswipe.com/photoswipe-demo-images/videos/2/video.mp4" data-pswp-video-type="video/mp4" data-pswp-width="1080" data-pswp-height="2048" data-pswp-type="video" target="_blank">
+        <img src="https://cdn.photoswipe.com/photoswipe-demo-images/videos/2/thumb.jpeg" alt="">
+      </a>
+
+      <a href="https://cdn.photoswipe.com/photoswipe-demo-images/videos/3/video.mp4" data-pswp-width="1920" data-pswp-height="1080" data-pswp-type="video" target="_blank">
+        <img src="https://cdn.photoswipe.com/photoswipe-demo-images/videos/3/thumb.jpeg" alt="">
+      </a>
+
+    <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg" data-pswp-width="1875" data-pswp-height="2500" target="_blank">
+        <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg" alt="">
+      </a>
+    <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" data-pswp-width="1669" data-pswp-height="2500" target="_blank">
+        <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt="">
+      </a>
+    <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" data-pswp-width="2500" data-pswp-height="1666" target="_blank">
+        <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt="">
+      </a>
+    </div>
+
+
+  <!-- Initialize Photoswipe -->
+  <script type="module">
+
+// import PhotoSwipeLightbox from './photoswipe-lightbox.esm.js';
+
+// const lightbox = new PhotoSwipeLightbox({
+//   gallery: 'body',
+//   children: 'a',
+//   pswpModule: () => import('./photoswipe.esm.js'),
+// });
+
+// // OPTIONAL: Stop video when slide closes
+// lightbox.on('closingAnimationStart', () => {
+//   const video = document.querySelector('.pswp__item video');
+//   if (video) video.pause();
+// });
+
+// lightbox.init();
+
+
+	// Include Lightbox 
+	import PhotoSwipeLightbox from 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe-lightbox.esm.min.js';
+	import PhotoSwipeVideoPlugin from 'https://cdn.jsdelivr.net/npm/photoswipe-video-plugin@1.0.2/dist/photoswipe-video-plugin.esm.min.js';
+
+
+	const lightbox = new PhotoSwipeLightbox({
+	  // may select multiple "galleries"
+	  gallery: 'body',
+
+	  // Elements within gallery (slides)
+	  children: 'a',
+
+	  // setup PhotoSwipe Core dynamic import
+	  pswpModule: () => import('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.esm.js'),
+
+
+	});
+
+	const videoPlugin = new PhotoSwipeVideoPlugin(lightbox, {
+	  // options
+	});
+
+
+		// OPTIONAL: Stop video when slide closes
+	lightbox.on('closingAnimationStart', () => {
+	  const video = document.querySelector('.pswp__item video');
+	  if (video) video.pause();
+	});
+
+	lightbox.init();
+
+
+  </script>
+</body>
+
+</html>
